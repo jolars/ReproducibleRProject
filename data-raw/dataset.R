@@ -6,4 +6,4 @@ library(tibble)
 x <- rnorm(100)
 y <- rnorm(100)
 
-write_csv(tibble(x = x, y = y), "data-research/dataset.csv")
+write_csv(tibble(x = x, y = y), "data/dataset.csv")

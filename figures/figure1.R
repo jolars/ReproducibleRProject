@@ -10,8 +10,10 @@ results <- read_csv("results/results.csv")
 
 file <- "paper/figures/plot.tex"
 
-tikz(file, standAlone = TRUE)
-with(results, plot(x, yhat))
+tikz(file, width = 3.3, height = 2.8, standAlone = TRUE)
+ggplot(results, aes(x, y)) +
+  geom_point() +
+  theme_minimal()
 dev.off()
 
 renderCropPDF(file)
