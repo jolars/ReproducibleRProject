@@ -3,6 +3,8 @@
 library(readr)
 library(tibble)
 
+set.seed(1352)
+
 x <- rnorm(100)
 y <- rnorm(100)
 
