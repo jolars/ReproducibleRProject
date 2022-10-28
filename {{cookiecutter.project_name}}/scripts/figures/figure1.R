@@ -3,12 +3,12 @@
 library(tikzDevice)
 library(ggplot2)
 library(readr)
+library(here)
 
-source("R/utils.R")
+source(here("scripts", "utils.R"))
 
-results <- read_csv("results/results.csv")
-
-file <- "paper/figures/plot.tex"
+results <- read_csv(results_path("results.csv"))
+file <- figures_path("plot.tex")
 
 tikz(file, width = 3.3, height = 2.8, standAlone = TRUE)
 ggplot(results, aes(x, y)) +
@@ -16,4 +16,4 @@ ggplot(results, aes(x, y)) +
   theme_minimal()
 dev.off()
 
-renderCropPDF(file)
+render_and_crop(file)

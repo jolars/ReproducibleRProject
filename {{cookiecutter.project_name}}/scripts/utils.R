@@ -1,5 +1,21 @@
+figures_path <- function(x) {
+  here::here("paper", "figures", x)
+}
+
+tables_path <- function(x) {
+  here::here("paper", "tables", x)
+}
+
+data_path <- function(x) {
+  here::here("data", x)
+}
+
+results_path <- function(x) {
+  here::here("results", x)
+}
+
 # runs latex on a tikz plot and crops the result
-renderCropPDF <- function(x) {
+render_and_crop <- function(x) {
   wd <- getwd()
   on.exit({
     setwd(wd)
