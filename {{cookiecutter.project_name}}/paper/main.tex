@@ -1,7 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode,pdfusetitle}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 
 \documentclass[english,a4paper]{article}
 
@@ -24,21 +24,22 @@
 
 \usepackage{listings}
 
-\lstset{% general command to set parameter(s)
-    basicstyle=\ttfamily, % print whole listing small
-    %keywordstyle=\color{black}\bfseries\underbar, % underlined bold black keywords
-    %commentstyle=\color{grey}, % white comments
-    keepspaces = true % no special string spaces
+\lstset{
+	basicstyle=\ttfamily, % print whole listing small
+	%keywordstyle=\color{black}\bfseries\underbar, % underlined bold black keywords
+	%commentstyle=\color{grey}, % white comments
+	keepspaces = true % no special string spaces
 }
 
 \usepackage{hyperref}
 \hypersetup{
-  colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=Blue
+	colorlinks=true,
+	linkcolor=Navy,
+	filecolor=Navy,
+	citecolor=Navy,
+	urlcolor=Navy
 }
+\usepackage{cleveref}
 
 \usepackage{longtable,booktabs}
 
@@ -63,47 +64,28 @@
 % \usepgfplotslibrary{external}
 % \tikzexternalize
 
-% set default figure placement
-\makeatletter
-\def\fps@figure{hbtp}
-\makeatother
-
 \usepackage{pdfpages}
 \usepackage{algorithm,algpseudocode}
-
-\usepackage{dirtytalk} % write quotations using \say{}
 
 % bibliography
 \makeatletter
 \def\blx@nowarnpolyglossia{}
 \makeatother
-\usepackage[style=alphabetic,backend=biber,sorting=anyt]{biblatex}
-\addbibresource{paper.bib}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{main.bib}
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 
 % operators
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator{\E}{\text{E}}
-\DeclareMathOperator{\var}{var}
-\DeclareMathOperator{\cov}{cov}
-\DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\range}{range}
-\DeclareMathOperator{\nullspace}{null}
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\sign}{sign}
 \renewcommand{\vec}{\vectorsym}
 \newcommand{\mat}{\matrixsym}
 \newcommand{\du}{\mathrm{d}}
 
-% title block
 \title{Title}
 
 \usepackage[]{authblk}
-\renewcommand\Affilfont{\itshape\small}
+% \renewcommand\Affilfont{\itshape\small}
 
 \author{Johan Larsson}
 \affil{The Department of Statistics, Lund University}
@@ -122,31 +104,33 @@
 \begin{abstract}
 \end{abstract}
 
-\hypertarget{introduction}{%
-  \section{Introduction}\label{introduction}}
+\section{Introduction}
+\label{introduction}
 
-Here is a reference~\autocite{larsson2020c}. Next is an example of using
-csvsimple.
+Here is a reference~\parencite{larsson2020c}. Next is an example of using
+csvsimple~(\Cref{tab:table1}).
 
 \begin{table}[hbtp]
-  \caption{A caption.\label{tab:table-ref}}
-  \csvreader[
-    tabular={lS[table-format=0.4]},
-    before reading=\footnotesize\centering\sisetup{round-mode=figures, round-precision=3},
-    table head=\toprule name & {value} \\\midrule,
-    table foot=\bottomrule
-  ]%
-  {tables/table1.csv}%
-  {name=\name, mu=\mu}%
-  {\name & \mu}
+	\caption{A caption.}
+	\label{tab:table1}
+	\csvreader[
+		tabular={lS[table-format=0.4]},
+		before reading=\footnotesize\centering\sisetup{round-mode=figures, round-precision=3},
+		table head=\toprule name & {value} \\\midrule,
+		table foot=\bottomrule
+	]%
+	{tables/table1.csv}%
+	{name=\name, mu=\mu}%
+	{\name & \mu}
 \end{table}
 
-And here comes a figure
+And here comes a figure~(\Cref{fig:figure1}).
 
 \begin{figure}[hbtp]
-  \centering
-  \includegraphics{figures/plot.pdf}
-  \caption{A figure caption.\label{fig:figure1}}
+	\centering
+	\includegraphics{figures/plot.pdf}
+	\caption{A figure caption.}
+	\label{fig:figure1}
 \end{figure}
 
 \printbibliography
